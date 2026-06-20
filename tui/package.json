@@ -1,0 +1,50 @@
+{
+  "name": "dadtodo",
+  "version": "0.1.0",
+  "description": "Terminal todo app that reads your markdown/text files and morphs between 7 views (Projects, GTD, Eisenhower, Kanban, Post-Its, Calendar, Mind Map) with AI categorization",
+  "author": "Chandrahas Aroori <chandrahas.aroori@gmail.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/chandrahas-aroori/dadtodo"
+  },
+  "keywords": [
+    "todo",
+    "tui",
+    "terminal",
+    "markdown",
+    "gtd",
+    "kanban",
+    "eisenhower",
+    "productivity",
+    "task-manager"
+  ],
+  "module": "tui.ts",
+  "type": "module",
+  "bin": {
+    "dadtodo": "./tui.ts"
+  },
+  "files": [
+    "tui.ts",
+    "app.ts",
+    "parser.ts",
+    "categorizer.ts",
+    "config.ts",
+    "watcher.ts"
+  ],
+  "dependencies": {
+    "@earendil-works/pi-coding-agent": "0.78.1",
+    "@earendil-works/pi-tui": "^0.79.8",
+    "chalk": "^5.6.2"
+  },
+  "scripts": {
+    "start": "bun tui.ts",
+    "test": "bun test"
+  },
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "engines": {
+    "bun": ">=1.0.0"
+  }
+}
