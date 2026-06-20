@@ -67,6 +67,9 @@ export function ChatPane(props: ChatPaneProps) {
         </Box>
       ))}
       <Box>
+        <Text dimColor>{"  j/k:nav  space:toggle  a:add  i:edit  /:search  Tab:chat  ?:help  q,q:quit"}</Text>
+      </Box>
+      <Box>
         <Text color={props.focused ? "blue" : "gray"}>  {">"} </Text>
         {props.focused ? (
           <TextInput

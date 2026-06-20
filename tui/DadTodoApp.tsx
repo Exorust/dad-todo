@@ -469,7 +469,12 @@ function AppInner({ config: initialConfig, isDemo }: AppProps) {
           const result = await studioChat(message, activeViewRef.current, {});
           reply(typeof result === "string" ? result : JSON.stringify(result));
         } catch (err: any) {
-          reply(`AI error: ${err.message || String(err)}`);
+          const msg = err.message || String(err);
+          if (msg.includes("already processing")) {
+            setStatus("AI is busy, try again in a moment", "warning");
+          } else {
+            reply(`AI error: ${msg}`);
+          }
         }
       },
     };
@@ -514,9 +519,11 @@ function AppInner({ config: initialConfig, isDemo }: AppProps) {
             bucketsRef.current = viewBuckets;
           }
         } catch (err: any) {
+          const msg = err.message || String(err);
+          if (msg.includes("already processing")) continue;
           if (!aiErrorShownRef.current) {
             aiErrorShownRef.current = true;
-            setStatus(`AI unavailable; using fallback (${err.message || String(err)})`, "warning");
+            setStatus("AI unavailable; using fallback views", "warning");
           }
         }
       }
