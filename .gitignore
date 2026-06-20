@@ -4,27 +4,15 @@ node_modules/
 
 # Build outputs
 dist/
-dist-ssr/
-**/dist/
-**/dist-ssr/
-target/
-**/target/
-app/src-tauri/gen/schemas/
 
 # Logs and local files
-logs/
 *.log
 *.local
 .DS_Store
 
 # Editor metadata
 .idea/
-.vscode/*
-!.vscode/extensions.json
-*.suo
-*.ntvs*
-*.njsproj
-*.sln
+.vscode/
 *.sw?
 
 # Test scratch dirs
