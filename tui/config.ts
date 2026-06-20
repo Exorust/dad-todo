@@ -10,6 +10,7 @@ export interface DadTodoConfig {
   custom_views?: DadTodoCustomView[];
   chat_history?: { role: "user" | "ai"; text: string }[];
   ai_timeout_ms?: number;
+  last_view?: string;
 }
 
 export interface DadTodoPreferences {

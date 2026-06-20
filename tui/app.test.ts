@@ -1,44 +1,6 @@
 import { test, expect, describe } from "bun:test";
 import type { Task } from "./parser";
-
-// Import the fallback categorizer by extracting it - it's not exported,
-// so we test via the module's behavior. For now, inline a copy for unit testing.
-function fallbackCategorize(viewName: string, tasks: Task[]): Record<string, number[]> {
-  const buckets: Record<string, number[]> = {};
-  const push = (key: string, i: number) => { (buckets[key] ??= []).push(i); };
-
-  for (let i = 0; i < tasks.length; i++) {
-    const t = tasks[i]!;
-    switch (viewName) {
-      case "gtd":
-        if (t.status === "done") push("done", i);
-        else if (t.tags?.includes("waiting")) push("waiting_for", i);
-        else if (t.heading?.toLowerCase().includes("someday")) push("someday_maybe", i);
-        else if (t.dueDate || t.status === "in_progress") push("next_actions", i);
-        else push("inbox", i);
-        break;
-      case "eisenhower":
-        if (t.dueDate) {
-          const days = (new Date(t.dueDate).getTime() - Date.now()) / 86400000;
-          push(days < 3 ? "urgent_important" : "important_not_urgent", i);
-        } else push("neither", i);
-        break;
-      case "kanban":
-        push(t.status === "done" ? "done" : t.status === "in_progress" ? "in_progress" : "todo", i);
-        break;
-      case "calendar":
-        push(t.dueDate ?? "undated", i);
-        break;
-      case "postit":
-        push(t.project || "other", i);
-        break;
-      case "mindmap":
-        push(t.project || "general", i);
-        break;
-    }
-  }
-  return buckets;
-}
+import { fallbackCategorize } from "./taskHelpers";
 
 function makeTask(overrides: Partial<Task> = {}): Task {
   return {
@@ -58,7 +20,7 @@ function makeTask(overrides: Partial<Task> = {}): Task {
   };
 }
 
-describe("fallback categorizer", () => {
+describe("fallback categorizer (via taskHelpers import)", () => {
   test("gtd: done tasks go to done bucket", () => {
     const tasks = [makeTask({ status: "done" })];
     const b = fallbackCategorize("gtd", tasks);

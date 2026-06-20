@@ -51,8 +51,7 @@ const SKIP_RE = /^(\s*$|```|>|!\[|<|---|\*\*\*|___)/;
 const FENCE_RE = /^(\s*)```/;
 
 const TEXT_EXTENSIONS = new Set([
-  ".md", ".txt", ".todo", ".taskpaper", ".tasks", ".list",
-  ".org", ".rst", ".markdown", ".mdown",
+  ".md", ".txt", ".todo",
 ]);
 
 export function isTextFile(name: string): boolean {

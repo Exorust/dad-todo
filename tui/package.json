@@ -1,12 +1,12 @@
 {
   "name": "dadtodo",
   "version": "0.1.0",
-  "description": "Terminal todo app that reads your markdown/text files and morphs between 7 views (Projects, GTD, Eisenhower, Kanban, Post-Its, Calendar, Mind Map) with AI categorization",
+  "description": "Terminal todo app that reads your markdown/text files and morphs between 8 views (Today, Projects, GTD, Eisenhower, Kanban, Post-Its, Calendar, Mind Map) with AI categorization",
   "author": "Chandrahas Aroori <chandrahas.aroori@gmail.com>",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/chandrahas-aroori/dadtodo"
+    "url": "git+https://github.com/Exorust/dad-todo.git"
   },
   "keywords": [
     "todo",
@@ -22,11 +22,18 @@
   "module": "tui.ts",
   "type": "module",
   "bin": {
-    "dadtodo": "./tui.ts"
+    "dadtodo": "bin/dadtodo.mjs"
   },
   "files": [
+    "bin/dadtodo.mjs",
     "tui.ts",
-    "app.ts",
+    "DadTodoApp.tsx",
+    "components/TabBar.tsx",
+    "components/TaskPane.tsx",
+    "components/ChatPane.tsx",
+    "chatCommands.ts",
+    "taskHelpers.ts",
+    "types.ts",
     "parser.ts",
     "categorizer.ts",
     "config.ts",
@@ -34,15 +41,18 @@
   ],
   "dependencies": {
     "@earendil-works/pi-coding-agent": "0.78.1",
-    "@earendil-works/pi-tui": "^0.79.8",
-    "chalk": "^5.6.2"
+    "chalk": "^5.6.2",
+    "ink": "^5.1.0",
+    "ink-text-input": "^6.0.0",
+    "react": "^18.3.1"
+  },
+  "devDependencies": {
+    "@types/bun": "latest",
+    "@types/react": "^18.3.1"
   },
   "scripts": {
     "start": "bun tui.ts",
     "test": "bun test"
-  },
-  "devDependencies": {
-    "@types/bun": "latest"
   },
   "engines": {
     "bun": ">=1.0.0"
